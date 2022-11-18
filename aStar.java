@@ -6,7 +6,7 @@ public class aStar{
     
   }
 
-  public int costFunction(worldState ws){
+  public int moveFunction(worldState ws){
     ArrayList<String> currentWorldState = ws.getWorldState();
     String monkeyRoom = currentWorldState.get(0);
     String boxRoom = currentWorldState.get(1);
@@ -18,21 +18,21 @@ public class aStar{
     String boxGoalRoom = goalState.get(1);
     String monkeyGoalHeight = goalState.get(2);
     
-    int fn = 0;
+    int gn = 0;
     if(monkeyRoom != monkeyGoalRoom){
-      fn = fn+2;
+      gn = fn+2;
     }
     if(boxRoom != boxGoalRoom){
-      fn = fn+2;
+      gn = fn+2;
     }
     if(monkeyHeight != monkeyGoalHeight){
-      fn++;
+      gn++;
     }
     if(monkeyHasBananas == goalState.get(3)){
-      fn = 0;
+      gn = 0;
     }
-
-    return fn;
+  System.out.println(gn);
+    return gn;
   }
 
     /*
