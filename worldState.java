@@ -1,0 +1,112 @@
+import java.util.*;
+
+public class worldState {
+  private ArrayList<String> roomMonkeyIn = new ArrayList<String>();
+  private ArrayList<String> roomBoxIn = new ArrayList<String>();
+  private ArrayList<String> roomBananasIn = new ArrayList<String>();
+  private String monkeyHeight = "low";
+  private boolean monkeyHasBananas = false;
+  public static final String roomA = "A";
+  public static final String roomB = "B";
+  public static final String roomC = "C";
+
+  public worldState(){;}
+  
+  public worldState(String[] monkeyBoxBananaArray){
+    this.roomMonkeyIn.add(monkeyBoxBananaArray[0]);
+    this.roomBoxIn.add(monkeyBoxBananaArray[1]);
+    this.roomBananasIn.add(monkeyBoxBananaArray[2]);
+  }
+
+  //Getter for Height Question for Actions  
+  public String getMonkeyHeight(){
+    return this.monkeyHeight;
+  }
+
+  public String getMonkeyRoom(){
+    return this.roomMonkeyIn.get(0);
+  }
+
+  public String getBoxRoom(){
+    return this.roomBoxIn.get(0);
+  }
+
+  public String getBananasRoom(){
+    return this.roomBananasIn.get(0);
+  }
+
+  //Questions for Actions
+  public boolean isMonkeyAt(String room) {
+    return this.roomMonkeyIn.get(0).equalsIgnoreCase(room);
+  }
+
+  public boolean isBoxAt(String room) {
+    return this.roomBoxIn.get(0).equalsIgnoreCase(room);
+  }
+
+  public boolean isBananasAt(String room) {
+    return this.roomBananasIn.get(0).equalsIgnoreCase(room);
+  }
+
+  //Goal State
+  public String getMonkeyHasBananas(){
+    String monkeyHasBananasString = Boolean.toString(monkeyHasBananas);
+    return monkeyHasBananasString;
+  }
+
+  //Chaning worldState functions
+  public void setMonkeyHeight(){
+    if (monkeyHeight == "low"){monkeyHeight = "high";}
+    else{ monkeyHeight = "low";}
+  }
+
+  public void setMonkeyRoom(String newRoom){
+    this.roomMonkeyIn.remove(0);
+    this.roomMonkeyIn.add(newRoom);
+  }
+
+  public void setMonkeyHasBananas(){
+    this.monkeyHasBananas = true;
+  }
+
+  public void setBoxRoom(String newRoom){
+    this.roomBoxIn.remove(0);
+    this.roomBoxIn.add(newRoom);
+  }
+
+  public void initialSetMonkeyRoom(String newRoom){
+    this.roomMonkeyIn.add(newRoom);
+  }
+
+  public void initialSetBoxRoom(String newRoom){
+    this.roomBoxIn.add(newRoom);
+  }
+
+  public void initialSetBananasRoom(String newRoom){
+    this.roomBananasIn.add(newRoom);
+  }
+
+  public ArrayList<String> getWorldState(){
+
+    ArrayList<String> currentWorldState = new ArrayList<String>();
+    
+    currentWorldState.add(getMonkeyRoom());
+    currentWorldState.add(getBoxRoom());
+    currentWorldState.add(getMonkeyHeight());
+    currentWorldState.add(getMonkeyHasBananas());
+    //monkeyRoom,boxRoom,height,monkeyHasBananas
+  return currentWorldState;
+  }
+
+  public ArrayList<String> getGoalState(){
+
+    ArrayList<String> goalState = new ArrayList<String>();
+    
+    goalState.add(getBananasRoom());
+    goalState.add(getBananasRoom());
+    goalState.add("high");
+    goalState.add("true");
+    //monkeyRoom,boxRoom,height,monkeyHasBananas
+  return goalState;
+  }
+}
