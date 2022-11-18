@@ -20,10 +20,10 @@ public class aStar{
     
     int gn = 0;
     if(monkeyRoom != monkeyGoalRoom){
-      gn = fn+2;
+      gn = gn+2;
     }
     if(boxRoom != boxGoalRoom){
-      gn = fn+2;
+      gn = gn+2;
     }
     if(monkeyHeight != monkeyGoalHeight){
       gn++;
