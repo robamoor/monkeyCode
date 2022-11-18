@@ -54,7 +54,7 @@ public class worldState {
     return monkeyHasBananasString;
   }
 
-  //Chaning worldState functions
+  //Changing worldState functions
   public void setMonkeyHeight(){
     if (monkeyHeight == "low"){monkeyHeight = "high";}
     else{ monkeyHeight = "low";}
@@ -74,6 +74,7 @@ public class worldState {
     this.roomBoxIn.add(newRoom);
   }
 
+  //Initial worldState setup
   public void initialSetMonkeyRoom(String newRoom){
     this.roomMonkeyIn.add(newRoom);
   }
@@ -86,6 +87,7 @@ public class worldState {
     this.roomBananasIn.add(newRoom);
   }
 
+  //worldState getter
   public ArrayList<String> getWorldState(){
 
     ArrayList<String> currentWorldState = new ArrayList<String>();
@@ -98,6 +100,7 @@ public class worldState {
   return currentWorldState;
   }
 
+  //goalState getter
   public ArrayList<String> getGoalState(){
 
     ArrayList<String> goalState = new ArrayList<String>();
