@@ -1,7 +1,10 @@
 import java.util.*;
 
 public class worldState {
-  private ArrayList<String> roomMonkeyIn = new ArrayList<String>();
+  /*
+   * 
+   */
+  private ArrayList<String> roomMonkeyIn = new ArrayList<String>(); // each of these have one element
   private ArrayList<String> roomBoxIn = new ArrayList<String>();
   private ArrayList<String> roomBananasIn = new ArrayList<String>();
   private String monkeyHeight = "low";

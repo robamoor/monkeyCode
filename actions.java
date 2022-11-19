@@ -69,14 +69,6 @@ class actions extends worldState{
     return possible;
   }
 
-  public boolean grabBananasPossible(String roomX){
-    boolean possible = false;
-    if ((isMonkeyAt(roomX)) && (getMonkeyHeight()=="high") && (isBananasAt(roomX))){
-      possible = true;
-    }
-    return possible;
-  }
-
   public void printMove(String roomX, String roomY){
     System.out.println("Move("+roomX+","+roomY+")");
   }
