@@ -10,17 +10,28 @@ public class meansEnds{
 
   }
 
-  public possibleBackGoals(worldsState ws, actions actions){
+  public backwardsChainGoals(worldState ws, actions actions){
     if (ws.getMonkeyHasBananas()=="true"){
       goalStack.push(actions.printGrabBananas());
-      goalStack.push(actions.printClimbDown());
 
       String bananasRoom = ws.getBananasRoom();
       String[] monkeyBoxBananaArray = new String[]{BananasRoom,bananasRoom,bananasRoom};
       
-      worldState newWorldState = new worlState(monkeyBoxBananaArray);
+      worldState newWorldState = new worldState(monkeyBoxBananaArray);
+      newWorldState.setMonkeyHeight();
+      //ws = Banana,Banana,high,false
+      
+      actions newAction = new actions();
+      newAction.initialSetMonkeyRoom(ws.getMonkeyRoom());
+      newAction.initialSetBoxRoom(ws.getBoxRoom());
+      newAction.initialSetBananasRoom(ws.getBananasRoom());
+      
+      backwardsChainGoals(newWorldState,action);
+    }else{
+      int i = 0;
     }
   }
+  
 
   public getGoalStack(){
     return goalStack;
