@@ -2,16 +2,24 @@ import java.io.*;
 import java.util.*;
 
 public class meansEnds{
-  private Stack<Integer> goalStack;
-  private int finalGoal;
+  private Stack<worldState> goalStack;
+
   
-  public meansEnds(Stack<Integer> goalStack, int finalGoal){
+  public meansEnds(Stack<worldState> goalStack){
     this.goalStack = goalStack;
-    this.finalGoal = finalGoal;
+
   }
-/*
-  public findGoals(){
-    
+
+  public possibleBackGoals(worldsState ws, actions actions){
+    if (ws.getMonkeyHasBananas()=="true"){
+      goalStack.push(actions.printGrabBananas());
+      goalStack.push(actions.printClimbDown());
+
+      String bananasRoom = ws.getBananasRoom();
+      String[] monkeyBoxBananaArray = new String[]{BananasRoom,bananasRoom,bananasRoom};
+      
+      worldState newWorldState = new worlState(monkeyBoxBananaArray);
+    }
   }
 
   public getGoalStack(){
@@ -22,7 +30,7 @@ public class meansEnds{
     
     return finalGoal;
   }
-*/
+
 
   
 }
