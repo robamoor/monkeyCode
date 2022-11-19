@@ -13,6 +13,7 @@ public class aStar{
     String monkeyHeight = currentWorldState.get(2);
     String monkeyHasBananas = currentWorldState.get(3);
 
+    //be careful to check what this is
     ArrayList<String> goalState = ws.getGoalState();
     String monkeyGoalRoom = goalState.get(0);
     String boxGoalRoom = goalState.get(1);
