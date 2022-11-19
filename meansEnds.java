@@ -2,10 +2,10 @@ import java.io.*;
 import java.util.*;
 
 public class meansEnds{
-  private Stack<actions> goalStack;
+  private Stack<String> goalStack;
 
   
-  public meansEnds(Stack<actions> goalStack){
+  public meansEnds(Stack<String> goalStack){
     this.goalStack = goalStack;
 
   }
@@ -14,7 +14,8 @@ public class meansEnds{
     if (ws.getMonkeyHasBananas()=="true"){
       
       String bananasRoom = ws.getBananasRoom();
-      goalStack.push(actions.grabBananas(bananasRoom));
+      goalStack.push("bananas");
+
       String[] monkeyBoxBananaArray = new String[]{bananasRoom,bananasRoom,bananasRoom};
       
       worldState newWorldState = new worldState(monkeyBoxBananaArray);
@@ -33,7 +34,7 @@ public class meansEnds{
   }
   
 
-  public Stack<actions> getGoalStack(){
+  public Stack<String> getGoalStack(){
     return goalStack;
   }
 
