@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 
 public class meansEnds{
@@ -13,6 +12,7 @@ public class meansEnds{
   public void backwardsChainGoals(worldState ws, actions actions){
     if (ws.getMonkeyHasBananas()=="true"){
       
+      //Initial Call
       String bananasRoom = ws.getBananasRoom();
       goalStack.push("bananas");
 
@@ -29,7 +29,50 @@ public class meansEnds{
       
       backwardsChainGoals(newWorldState,newAction);
     }else{
-      int i = 0;
+
+      //everything after initial
+      boolean movePossibleBoolRoom1 = actions.movePossible(null, null);
+      boolean movePossibleBoolRoom2 = actions.movePossible(null, null);
+      boolean climbUpPossible = actions.climbUpPossible(null);
+      boolean climbDownPossible = actions.climbDownPossible(null);
+      boolean pushBoxPossible1 = actions.pushBoxPossible(null, null);
+      boolean pushBoxPossible2 = actions.pushBoxPossible(null, null);
+
+      //if (ws == goalState){
+        //break
+      //}
+
+      if (movePossibleBoolRoom1 = true){
+        //create possible worldState
+        //add node to node tree
+        //backwardsChainGoals
+      }
+      if (movePossibleBoolRoom2 = true){
+        //create possible worldState
+        //add node to node tree
+        //backwardsChainGoals
+      }
+      if (climbUpPossible = true){
+        //create possible worldState
+        //add node to node tree
+        //backwardsChainGoals
+      }
+      if (climbDownPossible = true){
+        //create possible worldState
+        //add node to node tree
+        //backwardsChainGoals
+      }
+      if (pushBoxPossible1 = true){
+        //create possible worldState
+        //add node to node tree
+        //backwardsChainGoals
+      }
+      if (pushBoxPossible2 = true){
+        //create possible worldState
+        //add node to node tree
+        //backwardsChainGoals
+      }
+
     }
   }
   
