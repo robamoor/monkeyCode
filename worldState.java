@@ -115,4 +115,22 @@ public class worldState {
     //monkeyRoom,boxRoom,height,monkeyHasBananas
   return goalState;
   }
+
+  public ArrayList<String> getOtherRooms(){
+    String monkeyRoom = getMonkeyRoom();
+    ArrayList<String> otherRooms = new ArrayList<String>(); 
+    if (monkeyRoom.equalsIgnoreCase("a")){
+      otherRooms.add("b");
+      otherRooms.add("c");
+    }else if(monkeyRoom.equalsIgnoreCase("b")){
+      otherRooms.add("a");
+      otherRooms.add("c");
+    }else{
+      otherRooms.add("a");
+      otherRooms.add("b");
+    }
+    return otherRooms;
+  }
+
+  
 }

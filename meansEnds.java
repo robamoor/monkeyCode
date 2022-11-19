@@ -34,13 +34,14 @@ public class meansEnds{
       backwardsChainGoals(newWorldState,newAction);
     }else{
       counter++;
+      ArrayList<String> otherRoomsArray = ws.getOtherRooms();
       //everything after initial
-      boolean movePossibleBoolRoom1 = actions.movePossible(ws.getMonkeyRoom(), null);
-      boolean movePossibleBoolRoom2 = actions.movePossible(ws.getMonkeyRoom(), null);
+      boolean movePossibleBoolRoom1 = actions.movePossible(ws.getMonkeyRoom(), otherRoomsArray.get(0));
+      boolean movePossibleBoolRoom2 = actions.movePossible(ws.getMonkeyRoom(), otherRoomsArray.get(1));
       boolean climbUpPossible = actions.climbUpPossible(ws.getMonkeyRoom());
       boolean climbDownPossible = actions.climbDownPossible(ws.getMonkeyRoom());
-      boolean pushBoxPossible1 = actions.pushBoxPossible(ws.getMonkeyRoom(), null);
-      boolean pushBoxPossible2 = actions.pushBoxPossible(ws.getMonkeyRoom(), null);
+      boolean pushBoxPossible1 = actions.pushBoxPossible(ws.getMonkeyRoom(), otherRoomsArray.get(0));
+      boolean pushBoxPossible2 = actions.pushBoxPossible(ws.getMonkeyRoom(), otherRoomsArray.get(1));
 
       if (ws == startState){
         return;
