@@ -2,20 +2,20 @@ import java.io.*;
 import java.util.*;
 
 public class meansEnds{
-  private Stack<worldState> goalStack;
+  private Stack<actions> goalStack;
 
   
-  public meansEnds(Stack<worldState> goalStack){
+  public meansEnds(Stack<actions> goalStack){
     this.goalStack = goalStack;
 
   }
 
-  public backwardsChainGoals(worldState ws, actions actions){
+  public void backwardsChainGoals(worldState ws, actions actions){
     if (ws.getMonkeyHasBananas()=="true"){
-      goalStack.push(actions.printGrabBananas());
-
+      
       String bananasRoom = ws.getBananasRoom();
-      String[] monkeyBoxBananaArray = new String[]{BananasRoom,bananasRoom,bananasRoom};
+      goalStack.push(actions.grabBananas(bananasRoom));
+      String[] monkeyBoxBananaArray = new String[]{bananasRoom,bananasRoom,bananasRoom};
       
       worldState newWorldState = new worldState(monkeyBoxBananaArray);
       newWorldState.setMonkeyHeight();
@@ -26,21 +26,17 @@ public class meansEnds{
       newAction.initialSetBoxRoom(ws.getBoxRoom());
       newAction.initialSetBananasRoom(ws.getBananasRoom());
       
-      backwardsChainGoals(newWorldState,action);
+      backwardsChainGoals(newWorldState,newAction);
     }else{
       int i = 0;
     }
   }
   
 
-  public getGoalStack(){
+  public Stack<actions> getGoalStack(){
     return goalStack;
   }
 
-  public int getFinalGoal{
-    
-    return finalGoal;
-  }
 
 
   
