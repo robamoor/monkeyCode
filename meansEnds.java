@@ -2,10 +2,14 @@ import java.util.*;
 
 public class meansEnds{
   private Stack<String> goalStack;
+  private int counter;
+  private worldState startState;
 
   
-  public meansEnds(Stack<String> goalStack){
+  public meansEnds(Stack<String> goalStack,worldState startState){
     this.goalStack = goalStack;
+    this.counter = 0;
+    this.startState =startState;
 
   }
 
@@ -29,18 +33,20 @@ public class meansEnds{
       
       backwardsChainGoals(newWorldState,newAction);
     }else{
-
+      counter++;
       //everything after initial
-      boolean movePossibleBoolRoom1 = actions.movePossible(null, null);
-      boolean movePossibleBoolRoom2 = actions.movePossible(null, null);
-      boolean climbUpPossible = actions.climbUpPossible(null);
-      boolean climbDownPossible = actions.climbDownPossible(null);
-      boolean pushBoxPossible1 = actions.pushBoxPossible(null, null);
-      boolean pushBoxPossible2 = actions.pushBoxPossible(null, null);
+      boolean movePossibleBoolRoom1 = actions.movePossible(ws.getMonkeyRoom(), null);
+      boolean movePossibleBoolRoom2 = actions.movePossible(ws.getMonkeyRoom(), null);
+      boolean climbUpPossible = actions.climbUpPossible(ws.getMonkeyRoom());
+      boolean climbDownPossible = actions.climbDownPossible(ws.getMonkeyRoom());
+      boolean pushBoxPossible1 = actions.pushBoxPossible(ws.getMonkeyRoom(), null);
+      boolean pushBoxPossible2 = actions.pushBoxPossible(ws.getMonkeyRoom(), null);
 
-      //if (ws == goalState){
-        //break
-      //}
+      if (ws == startState){
+        return;
+      } else if (counter>7){
+        return;
+      }
 
       if (movePossibleBoolRoom1 = true){
         //create possible worldState
@@ -76,7 +82,6 @@ public class meansEnds{
     }
   }
   
-
   public Stack<String> getGoalStack(){
     return goalStack;
   }
