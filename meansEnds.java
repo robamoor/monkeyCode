@@ -188,7 +188,6 @@ public class meansEnds{
         Node childNode = new Node(childWorldState);
         rootNode.addChild(childNode);
 
-        //new child actions to pass with updated room from childWorldState
 
         childWorldState.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
         childWorldState.initialSetBoxRoom(childWorldState.getBoxRoom());
