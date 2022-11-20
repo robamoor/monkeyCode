@@ -13,6 +13,10 @@ public class Node {
         return children.get(index);
     }
 
+    public ArrayList<Node> getChildren() {
+        return children;
+    }
+
     public void addChild(Node child) {
         children.add(child);
     }

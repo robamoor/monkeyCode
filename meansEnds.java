@@ -203,4 +203,11 @@ public class meansEnds{
     }
     return rootNode;
   }
+
+  public void printTree(Node rootNode) {
+
+    while(rootNode.getChildren() != null) {
+      
+    }
+  }
 }

@@ -78,6 +78,7 @@ public class aStar{
     openList.add(start);
     return start;
   }
+  
 /* 
 A* pseudocode
 make an empty list C of closed nodes
