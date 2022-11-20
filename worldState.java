@@ -142,6 +142,37 @@ public class worldState {
     }
     return otherRooms;
   }
+  public boolean movePossible(String roomX, String roomY){
+    boolean possible = false;
+    if ((isMonkeyAt(roomX)) && (getMonkeyHeight()=="low")){
+      possible = true;
+    }
+    return possible;
+  }
+
+  public boolean pushBoxPossible(String roomX, String roomY){
+    boolean possible = false;
+    if ((isMonkeyAt(roomX)) && (getMonkeyHeight()=="low") && (isBoxAt(roomX))){
+      possible = true;
+    }
+    return possible;
+  }
+
+  public boolean climbUpPossible(String roomX){
+    boolean possible = false;
+    if ((isMonkeyAt(roomX)) && (getMonkeyHeight()=="low") && (isBoxAt(roomX))){
+      possible = true;
+    }
+    return possible;
+  }
+
+  public boolean climbDownPossible(String roomX){
+    boolean possible = false;
+    if ((isMonkeyAt(roomX)) && (getMonkeyHeight()=="high") && (isBoxAt(roomX))){
+      possible = true;
+    }
+    return possible;
+  }
 
   
 }
