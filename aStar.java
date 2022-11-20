@@ -69,6 +69,15 @@ public class aStar{
   public int costFunction(int gn, int hn){
     return gn+hn;
   }
+
+  public Node runAStar(Node start, Node target){
+    PriorityQueue<Node> closedList = new PriorityQueue<>();
+    PriorityQueue<Node> openList = new PriorityQueue<>();
+
+    //start.f = start.g + start.calculateHeuristic(target);
+    openList.add(start);
+    return start;
+  }
 /* 
 A* pseudocode
 make an empty list C of closed nodes
@@ -90,4 +99,25 @@ while O isn't empty:
     move n from O to C
 
 return that there's no solution */
+
+/*public static void printPath(Node target){
+    Node n = target;
+
+    if(n==null)
+        return;
+
+    List<Integer> ids = new ArrayList<>();
+
+    while(n.parent != null){
+        ids.add(n.id);
+        n = n.parent;
+    }
+    ids.add(n.id);
+    Collections.reverse(ids);
+
+    for(int id : ids){
+        System.out.print(id + " ");
+    }
+    System.out.println("");
+*/
 }

@@ -14,21 +14,11 @@ class driver{
     action.initialSetBoxRoom(ws.getBoxRoom());
     action.initialSetBananasRoom(ws.getBananasRoom());
     
-    action.move("A","B");
-    action.printMove("A","B");
-    action.pushBox("B","C");
-    action.printPushBox("B","C");
-    action.climbUp("C");
-    action.printClimbUp();
-    //action.climbDown("C");
-    //action.printClimbDown();
-    action.grabBananas("C");
-    action.printGrabBananas();
-    
     meansEnds meansend = new meansEnds(ws);
-    Node rootNode = new Node(ws);
-    meansend.backwardsChainGoals(rootNode, ws, action);
-    System.out.println("Monkey has bananas = " + action.getMonkeyHasBananas());
-    
+    Node rootNode = new Node(ws); //startState node that we search for?
+    aStar aStar = new aStar();
+
+    Node nodeTree = meansend.backwardsChainGoals(rootNode, ws, action); //Needs to be bananasNode, ws, action
+    Node runAStar = aStar.runAStar(nodeTree, rootNode); //start,target
   }
 }
