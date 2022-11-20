@@ -3,17 +3,17 @@ import java.util.*;
 public class meansEnds{
   private int counter;
   private worldState startState;
-  //private Node rootNode;
+  private Node rootNode;
 
   
   public meansEnds(worldState startState){
     this.counter = 0;
     this.startState = startState;
-    //rootNode = new Node(startState);
+    rootNode = new Node(startState);
   }
 
   // might need to pass in the root node for recursive tree generation
-  public void backwardsChainGoals(Node rootNode, worldState ws, actions actions){
+  public Node backwardsChainGoals(Node rootNode, worldState ws, actions actions){
     if (ws.getMonkeyHasBananas()=="true"){
       
       //Initial Call
@@ -22,6 +22,7 @@ public class meansEnds{
       String[] monkeyBoxBananaArray = new String[]{bananasRoom,bananasRoom,bananasRoom};
       worldState newWorldState = new worldState(monkeyBoxBananaArray);
       newWorldState.setMonkeyHeight();
+
       Node childNode = new Node(newWorldState);
       rootNode.addChild(childNode);
       //ws = Banana,Banana,high,false
@@ -31,7 +32,9 @@ public class meansEnds{
       newAction.initialSetBoxRoom(ws.getBoxRoom());
       newAction.initialSetBananasRoom(ws.getBananasRoom());
       
-      backwardsChainGoals(childNode, newWorldState,newAction);
+      backwardsChainGoals(childNode, newWorldState, newAction);
+
+      return rootNode;
     }else{
       counter++;
 
@@ -45,9 +48,9 @@ public class meansEnds{
       boolean pushBoxPossible2 = actions.pushBoxPossible(ws.getMonkeyRoom(), otherRoomsArray.get(1));
 
       if (ws == startState){
-        return;
+        return rootNode;
       } else if (counter>7){
-        return;
+        return rootNode;
       }
 
       if (movePossibleBoolRoom1 = true){
@@ -190,10 +193,7 @@ public class meansEnds{
         //recursive call
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
-      else{
-        System.out.println("Ayo what");
-      }
     }
+    return rootNode;
   }
-  
 }
