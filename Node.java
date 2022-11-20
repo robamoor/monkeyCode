@@ -6,6 +6,7 @@ public class Node {
     //num children = number of possible actions from world state
     public Node(worldState ws) {
         this.ws = ws;
+        children = new ArrayList<>();
     }
 
     public Node getChildAt(int index) {
