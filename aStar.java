@@ -81,6 +81,7 @@ public class aStar{
   
 /* 
 A* pseudocode
+
 make an empty list C of closed nodes
 make a list O of open nodes and their respective fn values containing the start node
 while O isn't empty:

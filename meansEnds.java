@@ -50,7 +50,7 @@ public class meansEnds{
 
       if (ws == startState){
         return rootNode;
-      } else if (counter>7){
+      } else if (counter>6){
         return rootNode;
       }
 
