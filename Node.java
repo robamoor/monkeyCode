@@ -1,18 +1,19 @@
+import java.util.ArrayList;
+
 public class Node {
     private worldState ws;
-    private Node[] children;
+    private ArrayList<Node> children;
     //num children = number of possible actions from world state
-    public Node(worldState ws, int numChildren) {
+    public Node(worldState ws) {
         this.ws = ws;
-        this.children = new Node[numChildren];
     }
 
     public Node getChildAt(int index) {
-        return children[index];
+        return children.get(index);
     }
 
-    public void setChildAt(int index, Node child) {
-        this.children[index] = child;
+    public void addChild(Node child) {
+        children.add(child);
     }
 
     public worldState getWorldState() {
