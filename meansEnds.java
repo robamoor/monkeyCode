@@ -33,6 +33,7 @@ public class meansEnds{
       newAction.initialSetBoxRoom(ws.getBoxRoom());
       newAction.initialSetBananasRoom(ws.getBananasRoom());
       
+      System.out.println("1st iteration");
       backwardsChainGoals(childNode, newWorldState, newAction);
 
       return rootNode;
@@ -49,12 +50,13 @@ public class meansEnds{
       boolean pushBoxPossible2 = actions.pushBoxPossible(ws.getMonkeyRoom(), otherRoomsArray.get(1));
 
       if (ws == startState){
+        System.out.println("found start state");
         return rootNode;
       } else if (counter>6){
         return rootNode;
       }
 
-      if (movePossibleBoolRoom1 = true){
+      if (movePossibleBoolRoom1 == true){
         //possible move room 1
         String newMoveRoom = otherRoomsArray.get(0);
 
@@ -82,7 +84,7 @@ public class meansEnds{
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
 
-      if (movePossibleBoolRoom2 = true){
+      if (movePossibleBoolRoom2 == true){
         String newMoveRoom = otherRoomsArray.get(1);
         String[] childNodeArray = new String[]{newMoveRoom,ws.getBoxRoom(),ws.getBananasRoom()};
 
@@ -107,7 +109,7 @@ public class meansEnds{
         System.out.println("Move2 leaf");
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
-      if (climbUpPossible = true){
+      if (climbUpPossible == true){
         String[] childNodeArray = new String[]{ws.getMonkeyRoom(),ws.getBoxRoom(),ws.getBananasRoom()};
         worldState childWorldState = new worldState(childNodeArray);
 
@@ -128,7 +130,7 @@ public class meansEnds{
         System.out.println("ClimbUp leaf");
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
-      if (climbDownPossible = true){
+      if (climbDownPossible == true){
         String[] childNodeArray = new String[]{ws.getMonkeyRoom(),ws.getBoxRoom(),ws.getBananasRoom()};
         worldState childWorldState = new worldState(childNodeArray);
 
@@ -150,7 +152,7 @@ public class meansEnds{
         System.out.println("ClimbDown leaf");
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
-      if (pushBoxPossible1 = true){
+      if (pushBoxPossible1 == true){
         String newBoxRoom = otherRoomsArray.get(0);
         String[] childNodeArray = new String[]{newBoxRoom,newBoxRoom,ws.getBananasRoom()};
 
@@ -175,7 +177,7 @@ public class meansEnds{
         System.out.println("MoveBox1 leaf");
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
-      if (pushBoxPossible2 = true){
+      if (pushBoxPossible2 == true){
         String newBoxRoom = otherRoomsArray.get(1);
         String[] childNodeArray = new String[]{newBoxRoom,newBoxRoom,ws.getBananasRoom()};
 

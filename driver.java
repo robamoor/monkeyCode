@@ -17,7 +17,7 @@ class driver{
     Node bananasNode = new Node(bananasWorldState);
 
     //create means ends instance of the ending state for backwards chaining
-    meansEnds meansend = new meansEnds(bananasWorldState);
+    meansEnds meansend = new meansEnds(nonBananasWorldState);
 
     //create actions class
     actions action = new actions();
