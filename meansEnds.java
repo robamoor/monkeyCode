@@ -32,15 +32,14 @@ public class meansEnds{
       newAction.initialSetMonkeyRoom(ws.getMonkeyRoom());
       newAction.initialSetBoxRoom(ws.getBoxRoom());
       newAction.initialSetBananasRoom(ws.getBananasRoom());
-      newAction.setMonkeyHeight();
       
       System.out.println("1st iteration");
       backwardsChainGoals(childNode, newWorldState, newAction);
 
       return rootNode;
     }else{
-      counter++;
 
+      this.counter++;
       ArrayList<String> otherRoomsArray = ws.getOtherRooms();
       //everything after initial
       boolean movePossibleBoolRoom1 = actions.movePossible(ws.getMonkeyRoom(), otherRoomsArray.get(0));
@@ -50,108 +49,11 @@ public class meansEnds{
       boolean pushBoxPossible1 = actions.pushBoxPossible(ws.getMonkeyRoom(), otherRoomsArray.get(0));
       boolean pushBoxPossible2 = actions.pushBoxPossible(ws.getMonkeyRoom(), otherRoomsArray.get(1));
 
-      if (ws == startState){
+      if (compareTargetStates(ws)){
         System.out.println("found start state");
         return rootNode;
-      } else if (counter>6){
+      } else if (counter>10){
         return rootNode;
-      }
-
-      if (movePossibleBoolRoom1 == true){
-        //possible move room 1
-        String newMoveRoom = otherRoomsArray.get(0);
-
-        //New world state
-        String[] childNodeArray = new String[]{newMoveRoom,ws.getBoxRoom(),ws.getBananasRoom()};
-        worldState childWorldState = new worldState(childNodeArray);
-
-        //change monkeyHeight to be correct
-        if (childWorldState.getMonkeyHeight() != ws.getMonkeyHeight()){
-          childWorldState.setMonkeyHeight();
-        }
-
-        //add node to node tree
-        Node childNode = new Node(childWorldState);
-        rootNode.addChild(childNode);
-
-        //new child actions to pass with updated room from childWorldState
-        actions childAction = new actions();
-        childAction.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
-        childAction.initialSetBoxRoom(childWorldState.getBoxRoom());
-        childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
-      
-        //recursive call
-        System.out.println("Move1 leaf/iteration"+counter);
-        backwardsChainGoals(childNode,childWorldState,childAction);
-      }
-
-      if (movePossibleBoolRoom2 == true){
-        String newMoveRoom = otherRoomsArray.get(1);
-        String[] childNodeArray = new String[]{newMoveRoom,ws.getBoxRoom(),ws.getBananasRoom()};
-
-        worldState childWorldState = new worldState(childNodeArray);
-
-        //change monkeyHeight to be correct
-        if (childWorldState.getMonkeyHeight() != ws.getMonkeyHeight()){
-          childWorldState.setMonkeyHeight();
-        }
-        
-        //add node to node tree
-        Node childNode = new Node(childWorldState);
-        rootNode.addChild(childNode);
-
-        //new child actions to pass with updated room from childWorldState
-        actions childAction = new actions();
-        childAction.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
-        childAction.initialSetBoxRoom(childWorldState.getBoxRoom());
-        childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
-              
-        //recursive call
-        System.out.println("Move2 leaf/iteration"+counter);
-        backwardsChainGoals(childNode,childWorldState,childAction);
-      }
-      if (climbUpPossible == true){
-        String[] childNodeArray = new String[]{ws.getMonkeyRoom(),ws.getBoxRoom(),ws.getBananasRoom()};
-        worldState childWorldState = new worldState(childNodeArray);
-
-        //change monkeyHeight to be correct
-        childWorldState.setMonkeyHeight();
-        
-        //add node to node tree
-        Node childNode = new Node(childWorldState);
-        rootNode.addChild(childNode);
-
-        //new child actions to pass with updated room from childWorldState
-        actions childAction = new actions();
-        childAction.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
-        childAction.initialSetBoxRoom(childWorldState.getBoxRoom());
-        childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
-              
-        //recursive call
-        System.out.println("ClimbUp leaf/iteration"+counter);
-        backwardsChainGoals(childNode,childWorldState,childAction);
-      }
-      if (climbDownPossible == true){
-        String[] childNodeArray = new String[]{ws.getMonkeyRoom(),ws.getBoxRoom(),ws.getBananasRoom()};
-        worldState childWorldState = new worldState(childNodeArray);
-
-        //change monkeyHeight to be correct
-        childWorldState.setMonkeyHeight();
-        
-        
-        //add node to node tree
-        Node childNode = new Node(childWorldState);
-        rootNode.addChild(childNode);
-
-        //new child actions to pass with updated room from childWorldState
-        actions childAction = new actions();
-        childAction.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
-        childAction.initialSetBoxRoom(childWorldState.getBoxRoom());
-        childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
-              
-        //recursive call
-        System.out.println("ClimbDown leaf/iteration"+counter);
-        backwardsChainGoals(childNode,childWorldState,childAction);
       }
       if (pushBoxPossible1 == true){
         String newBoxRoom = otherRoomsArray.get(0);
@@ -203,6 +105,104 @@ public class meansEnds{
         System.out.println("MoveBox2 leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
+      if (movePossibleBoolRoom1 == true){
+        //possible move room 1
+        String newMoveRoom = otherRoomsArray.get(0);
+
+        //New world state
+        String[] childNodeArray = new String[]{newMoveRoom,ws.getBoxRoom(),ws.getBananasRoom()};
+        worldState childWorldState = new worldState(childNodeArray);
+
+        //change monkeyHeight to be correct
+        if (childWorldState.getMonkeyHeight() != ws.getMonkeyHeight()){
+          childWorldState.setMonkeyHeight();
+        }
+
+        //add node to node tree
+        Node childNode = new Node(childWorldState);
+        rootNode.addChild(childNode);
+
+        //new child actions to pass with updated room from childWorldState
+        actions childAction = new actions();
+        childAction.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
+        childAction.initialSetBoxRoom(childWorldState.getBoxRoom());
+        childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
+      
+        //recursive call
+        System.out.println("Move1 to " + otherRoomsArray.get(0)+ " leaf/iteration"+counter);
+        backwardsChainGoals(childNode,childWorldState,childAction);
+      }
+
+      if (movePossibleBoolRoom2 == true){
+        String newMoveRoom = otherRoomsArray.get(1);
+        String[] childNodeArray = new String[]{newMoveRoom,ws.getBoxRoom(),ws.getBananasRoom()};
+
+        worldState childWorldState = new worldState(childNodeArray);
+
+        //change monkeyHeight to be correct
+        if (childWorldState.getMonkeyHeight() != ws.getMonkeyHeight()){
+          childWorldState.setMonkeyHeight();
+        }
+        
+        //add node to node tree
+        Node childNode = new Node(childWorldState);
+        rootNode.addChild(childNode);
+
+        //new child actions to pass with updated room from childWorldState
+        actions childAction = new actions();
+        childAction.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
+        childAction.initialSetBoxRoom(childWorldState.getBoxRoom());
+        childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
+              
+        //recursive call
+        System.out.println("Move2 to " + otherRoomsArray.get(0)+ " leaf/iteration"+counter);
+        backwardsChainGoals(childNode,childWorldState,childAction);
+      }
+      if (climbUpPossible == true){
+        String[] childNodeArray = new String[]{ws.getMonkeyRoom(),ws.getBoxRoom(),ws.getBananasRoom()};
+        worldState childWorldState = new worldState(childNodeArray);
+
+        //change monkeyHeight to be correct
+        childWorldState.setMonkeyHeight();
+        
+        //add node to node tree
+        Node childNode = new Node(childWorldState);
+        rootNode.addChild(childNode);
+
+        //new child actions to pass with updated room from childWorldState
+        actions childAction = new actions();
+        childAction.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
+        childAction.initialSetBoxRoom(childWorldState.getBoxRoom());
+        childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
+        childAction.setMonkeyHeight();
+              
+        //recursive call
+        System.out.println("ClimbUp leaf/iteration"+counter);
+        backwardsChainGoals(childNode,childWorldState,childAction);
+      }
+      if (climbDownPossible == true){
+        String[] childNodeArray = new String[]{ws.getMonkeyRoom(),ws.getBoxRoom(),ws.getBananasRoom()};
+        worldState childWorldState = new worldState(childNodeArray);
+
+
+        //change monkeyHeight to be correct
+        childWorldState.setMonkeyHeight();
+        
+        //add node to node tree
+        Node childNode = new Node(childWorldState);
+        rootNode.addChild(childNode);
+
+        //new child actions to pass with updated room from childWorldState
+        actions childAction = new actions();
+        childAction.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
+        childAction.initialSetBoxRoom(childWorldState.getBoxRoom());
+        childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
+        childAction.setMonkeyHeight();
+              
+        //recursive call
+        System.out.println("ClimbDown leaf/iteration"+counter);
+        backwardsChainGoals(childNode,childWorldState,childAction);
+      }
     }
     return rootNode;
   }
@@ -212,5 +212,16 @@ public class meansEnds{
     while(rootNode.getChildren() != null) {
       
     }
+  }
+
+  public boolean compareTargetStates(worldState currentWorldState){
+    
+    Boolean monkeyHasBananasCheck = currentWorldState.getMonkeyHasBananas().equalsIgnoreCase(startState.getMonkeyHasBananas());
+    Boolean heightCheck = currentWorldState.getMonkeyHeight().equalsIgnoreCase(startState.getMonkeyHeight());
+    Boolean bananasRoomCheck = currentWorldState.getBananasRoom().equalsIgnoreCase(startState.getBananasRoom());
+    Boolean boxRoomCheck = currentWorldState.getBoxRoom().equalsIgnoreCase(startState.getBoxRoom());
+    Boolean monkeyRoomCheck = currentWorldState.getMonkeyRoom().equalsIgnoreCase(startState.getMonkeyRoom());
+
+    return monkeyHasBananasCheck&&heightCheck&&bananasRoomCheck&&boxRoomCheck&&monkeyRoomCheck;
   }
 }

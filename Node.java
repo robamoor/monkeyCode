@@ -61,6 +61,7 @@ public class Node implements Comparable<Node>{
     }
 
     //heuristic (moving/moving box are high cost and climb/grab bananas is low)
+    //don't go to the previous rooms
     public int heuristicFunction(){
         ArrayList<String> currentWorldState = ws.getWorldState();
         String monkeyRoom = currentWorldState.get(0);

@@ -14,6 +14,7 @@ class driver{
     //create worldState where monkey has bananas to start from
     String[] bananasArray = new String[]{nonBananasWorldState.getBananasRoom(),nonBananasWorldState.getBananasRoom(),nonBananasWorldState.getBananasRoom()};
     worldState bananasWorldState = nonBananasWorldState.getGoalWorldState(bananasArray);
+    System.out.println("bananasWorldState height "+ bananasWorldState.getMonkeyHeight());
     Node bananasNode = new Node(bananasWorldState);
 
     //create means ends instance of the ending state for backwards chaining
@@ -24,6 +25,7 @@ class driver{
     action.initialSetMonkeyRoom(bananasWorldState.getMonkeyRoom());
     action.initialSetBoxRoom(bananasWorldState.getBoxRoom());
     action.initialSetBananasRoom(bananasWorldState.getBananasRoom());
+    action.setMonkeyHeight();
     
     //Initialize aStar and run backwards chaning starting from 
     aStar aStar = new aStar();
