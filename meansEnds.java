@@ -32,6 +32,7 @@ public class meansEnds{
       newAction.initialSetMonkeyRoom(ws.getMonkeyRoom());
       newAction.initialSetBoxRoom(ws.getBoxRoom());
       newAction.initialSetBananasRoom(ws.getBananasRoom());
+      newAction.setMonkeyHeight();
       
       System.out.println("1st iteration");
       backwardsChainGoals(childNode, newWorldState, newAction);
@@ -80,7 +81,7 @@ public class meansEnds{
         childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
       
         //recursive call
-        System.out.println("Move1 leaf");
+        System.out.println("Move1 leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
 
@@ -106,7 +107,7 @@ public class meansEnds{
         childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
               
         //recursive call
-        System.out.println("Move2 leaf");
+        System.out.println("Move2 leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
       if (climbUpPossible == true){
@@ -127,7 +128,7 @@ public class meansEnds{
         childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
               
         //recursive call
-        System.out.println("ClimbUp leaf");
+        System.out.println("ClimbUp leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
       if (climbDownPossible == true){
@@ -149,7 +150,7 @@ public class meansEnds{
         childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
               
         //recursive call
-        System.out.println("ClimbDown leaf");
+        System.out.println("ClimbDown leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
       if (pushBoxPossible1 == true){
@@ -174,7 +175,7 @@ public class meansEnds{
         childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
               
         //recursive call
-        System.out.println("MoveBox1 leaf");
+        System.out.println("MoveBox1 leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
       if (pushBoxPossible2 == true){
@@ -199,7 +200,7 @@ public class meansEnds{
         childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
               
         //recursive call
-        System.out.println("MoveBox2 leaf");
+        System.out.println("MoveBox2 leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
     }
