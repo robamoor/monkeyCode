@@ -23,6 +23,7 @@ public class meansEnds{
       worldState newWorldState = new worldState(monkeyBoxBananaArray);
       newWorldState.setMonkeyHeight();
 
+      this.rootNode = rootNode;
       Node childNode = new Node(newWorldState);
       rootNode.addChild(childNode);
       //ws = Banana,Banana,high,false
@@ -77,6 +78,7 @@ public class meansEnds{
         childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
       
         //recursive call
+        System.out.println("Move1 leaf");
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
 
@@ -102,6 +104,7 @@ public class meansEnds{
         childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
               
         //recursive call
+        System.out.println("Move2 leaf");
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
       if (climbUpPossible = true){
@@ -122,6 +125,7 @@ public class meansEnds{
         childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
               
         //recursive call
+        System.out.println("ClimbUp leaf");
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
       if (climbDownPossible = true){
@@ -143,6 +147,7 @@ public class meansEnds{
         childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
               
         //recursive call
+        System.out.println("ClimbDown leaf");
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
       if (pushBoxPossible1 = true){
@@ -167,6 +172,7 @@ public class meansEnds{
         childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
               
         //recursive call
+        System.out.println("MoveBox1 leaf");
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
       if (pushBoxPossible2 = true){
@@ -191,6 +197,7 @@ public class meansEnds{
         childAction.initialSetBananasRoom(childWorldState.getBananasRoom());
               
         //recursive call
+        System.out.println("MoveBox2 leaf");
         backwardsChainGoals(childNode,childWorldState,childAction);
       }
     }

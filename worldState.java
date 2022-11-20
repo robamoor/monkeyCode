@@ -115,6 +115,17 @@ public class worldState {
     //monkeyRoom,boxRoom,height,monkeyHasBananas
   return goalState;
   }
+
+  public worldState getGoalWorldState(String[] worldStateArray){
+    
+    worldState goalWorldState = new worldState(worldStateArray);
+
+    goalWorldState.setMonkeyHeight();
+    
+    return goalWorldState;
+  }
+
+
   public ArrayList<String> getOtherRooms(){
     String monkeyRoom = getMonkeyRoom();
     ArrayList<String> otherRooms = new ArrayList<String>(); 

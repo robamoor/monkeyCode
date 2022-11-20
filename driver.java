@@ -7,18 +7,27 @@ class driver{
     String[] monkeyBoxBananasArray;
     monkeyBoxBananasArray = scanner.runScanner();
 
-    worldState ws = new worldState(monkeyBoxBananasArray);
+    //create initial worldState
+    worldState nonBananasWorldState = new worldState(monkeyBoxBananasArray);
+    Node nonBananasNode = new Node(nonBananasWorldState); 
 
+    //create worldState where monkey has bananas to start from
+    String[] bananasArray = new String[]{nonBananasWorldState.getBananasRoom(),nonBananasWorldState.getBananasRoom(),nonBananasWorldState.getBananasRoom()};
+    worldState bananasWorldState = nonBananasWorldState.getGoalWorldState(bananasArray);
+    Node bananasNode = new Node(bananasWorldState);
+
+    //create means ends instance of the ending state for backwards chaining
+    meansEnds meansend = new meansEnds(bananasWorldState);
+
+    //create actions class
     actions action = new actions();
-    action.initialSetMonkeyRoom(ws.getMonkeyRoom());
-    action.initialSetBoxRoom(ws.getBoxRoom());
-    action.initialSetBananasRoom(ws.getBananasRoom());
+    action.initialSetMonkeyRoom(bananasWorldState.getMonkeyRoom());
+    action.initialSetBoxRoom(bananasWorldState.getBoxRoom());
+    action.initialSetBananasRoom(bananasWorldState.getBananasRoom());
     
-    meansEnds meansend = new meansEnds(ws);
-    Node rootNode = new Node(ws); //startState node that we search for?
+    //Initialize aStar and run backwards chaning starting from 
     aStar aStar = new aStar();
-
-    Node nodeTree = meansend.backwardsChainGoals(rootNode, ws, action); //Needs to be bananasNode, ws, action
-    Node runAStar = aStar.runAStar(nodeTree, rootNode); //start,target
+    Node nodeTree = meansend.backwardsChainGoals(bananasNode, bananasWorldState, action); //Needs to be bananasNode, ws, action
+    Node runAStar = aStar.runAStar(nodeTree, nonBananasNode); //start,target
   }
 }
