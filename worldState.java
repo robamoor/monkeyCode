@@ -121,6 +121,7 @@ public class worldState {
     worldState goalWorldState = new worldState(worldStateArray);
 
     goalWorldState.setMonkeyHeight();
+    goalWorldState.setMonkeyHasBananas();
     
     return goalWorldState;
   }
