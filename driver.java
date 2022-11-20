@@ -24,6 +24,10 @@ class driver{
     //action.printClimbDown();
     action.grabBananas("C");
     action.printGrabBananas();
+    
+    meansEnds meansend = new meansEnds(ws);
+    Node rootNode = new Node(ws);
+    meansend.backwardsChainGoals(rootNode, ws, action);
     System.out.println("Monkey has bananas = " + action.getMonkeyHasBananas());
     
   }
