@@ -12,6 +12,7 @@ public class worldState {
   private ArrayList<String> roomMonkeyInitial = new ArrayList<String>(); // each of these have one element
   private ArrayList<String> roomBoxInitial = new ArrayList<String>();
   private ArrayList<String> roomBananasInitial = new ArrayList<String>();
+  private worldState targetState;
   public static final String roomA = "A";
   public static final String roomB = "B";
   public static final String roomC = "C";
@@ -25,6 +26,7 @@ public class worldState {
     this.roomMonkeyInitial.add(monkeyBoxBananaArray[0]);
     this.roomBoxInitial.add(monkeyBoxBananaArray[1]);
     this.roomBananasInitial.add(monkeyBoxBananaArray[2]);
+    //this.targetState = getTargetState();
   }
 
   //Getter for Height Question for Actions  
@@ -182,8 +184,15 @@ public class worldState {
 
   public worldState getTargetState() {
     String[] param = new String[]{roomMonkeyInitial.get(0),roomBoxInitial.get(0),roomBananasInitial.get(0)};
-    worldState targetState = new worldState(param);
-    return targetState;
+
+    if (this.targetState == null) {
+      worldState targetState = new worldState(param);
+      this.targetState = targetState;
+    } else {
+      return this.targetState;
+    }
+    
+    return this.targetState;
   }
 
 }

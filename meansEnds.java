@@ -52,7 +52,7 @@ public class meansEnds{
         System.out.println("found start state");
         return rootNode;
       } else if (counter>12){
-        return rootNode;
+        return null;
       }
       // if it is possible to push the box and the previous node isnt located in the same room as the new one
       if (pushBoxPossible1 == true){

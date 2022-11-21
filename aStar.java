@@ -53,7 +53,7 @@ public class aStar{
                     closedList.add(current);
                     return current;
                  } else {
-                    continue;
+                    break;
                  } 
             }  
         }
