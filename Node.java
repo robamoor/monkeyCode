@@ -117,6 +117,10 @@ public class Node implements Comparable<Node>{
         return moveScore;
       }
 
+      public void setMoveScore(int newScore) {
+        this.moveScore = newScore;
+      }
+
       public int getHScore() {
         return hScore;
       }
@@ -127,6 +131,10 @@ public class Node implements Comparable<Node>{
 
       public int costFunction(int gn, int hn){
         return gn+hn;
+      }
+
+      public void setCostFunction(int gn, int hn) {
+        fScore = gn+hn;
       }
 
     

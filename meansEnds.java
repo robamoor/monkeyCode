@@ -51,7 +51,7 @@ public class meansEnds{
       if (compareTargetStates(ws)){
         System.out.println("found start state");
         return rootNode;
-      } else if (counter>8){
+      } else if (counter>12){
         return rootNode;
       }
       // if it is possible to push the box and the previous node isnt located in the same room as the new one

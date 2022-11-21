@@ -2,6 +2,8 @@ import java.util.*;
 
 public class aStar{
 
+    //private worldState targetState;
+
   public aStar(){
     
   }
@@ -10,19 +12,63 @@ public class aStar{
     PriorityQueue<Node> closedList = new PriorityQueue<>();
     PriorityQueue<Node> openList = new PriorityQueue<>();
 
-    //int start_f = start.g + start.calculateHeuristic(target);
+    int start_f = start.getFScore();
     openList.add(start);
-
+    int iter = 0;
     while ((!openList.isEmpty())) {
         // do smth
         Node current = openList.peek();
-        if (current == target) {
+        if (compareTargetStates(current.getWorldState(), target.getWorldState())) {
             return current;
         }
 
+        // for each cost(m) 
         
+        for (Node n : current.getChildren()) {
+            System.out.println("ITERATION --> " + iter);
+            iter++;
+            int totalWeight = current.getMoveScore() + n.getMoveScore();
+            if(!(openList.contains(n)) && !(closedList.contains(n))) {
+                n.addParentNode(current);
+                n.setMoveScore(totalWeight);
+                n.setCostFunction(n.getMoveScore(), n.getHScore());
+                openList.add(n);
+            } else {
+                if(totalWeight < n.getMoveScore()) {
+                    n.addParentNode(current);
+                    n.setMoveScore(totalWeight);
+                    n.setCostFunction(n.getMoveScore(), n.getHScore());
+
+                    if(closedList.contains(n)) {
+                        closedList.remove(n);
+                        openList.add(n);
+                    }
+                }
+            }
+            /* 
+            if (n.getChildren() == null) {
+                openList.remove(current);
+                closedList.add(current);
+                continue;
+            }
+            */
+        }
+        openList.remove(current);
+        closedList.add(current);
     }
-    return start;
+    return null;
+  }
+
+  // returns true if current state matches target state
+  public boolean compareTargetStates(worldState currentWorldState, worldState target){
+    
+    Boolean monkeyHasBananasCheck = currentWorldState.getMonkeyHasBananas().equalsIgnoreCase(target.getMonkeyHasBananas());
+    Boolean heightCheck = currentWorldState.getMonkeyHeight().equalsIgnoreCase(target.getMonkeyHeight());
+    Boolean bananasRoomCheck = currentWorldState.getBananasRoom().equalsIgnoreCase(target.getBananasRoom());
+    Boolean boxRoomCheck = currentWorldState.getBoxRoom().equalsIgnoreCase(target.getBoxRoom());
+    Boolean monkeyRoomCheck = currentWorldState.getMonkeyRoom().equalsIgnoreCase(target.getMonkeyRoom());
+
+    return monkeyHasBananasCheck&&heightCheck&&bananasRoomCheck&&boxRoomCheck&&monkeyRoomCheck;
   }
 
 /* 
