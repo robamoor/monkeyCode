@@ -106,7 +106,7 @@ public class Node implements Comparable<Node>{
         if(monkeyHeight != monkeyGoalHeight){
           hn++;
         }
-        if(monkeyHasBananas == goalState.get(3)){
+        if(compareTargetStates(ws)){
           hn = 0;
         }
 
@@ -135,6 +135,17 @@ public class Node implements Comparable<Node>{
 
       public void setCostFunction(int gn, int hn) {
         fScore = gn+hn;
+      }
+    
+      public boolean compareTargetStates(worldState currentWorldState){
+    
+        Boolean monkeyHasBananasCheck = currentWorldState.getMonkeyHasBananas().equalsIgnoreCase(ws.getTargetState().getMonkeyHasBananas());
+        Boolean heightCheck = currentWorldState.getMonkeyHeight().equalsIgnoreCase(ws.getTargetState().getMonkeyHeight());
+        Boolean bananasRoomCheck = currentWorldState.getBananasRoom().equalsIgnoreCase(ws.getTargetState().getBananasRoom());
+        Boolean boxRoomCheck = currentWorldState.getBoxRoom().equalsIgnoreCase(ws.getTargetState().getBoxRoom());
+        Boolean monkeyRoomCheck = currentWorldState.getMonkeyRoom().equalsIgnoreCase(ws.getTargetState().getMonkeyRoom());
+    
+        return monkeyHasBananasCheck&&heightCheck&&bananasRoomCheck&&boxRoomCheck&&monkeyRoomCheck;
       }
 
     

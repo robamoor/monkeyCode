@@ -14,7 +14,7 @@ public class aStar{
 
     int start_f = start.getFScore();
     openList.add(start);
-    int iter = 0;
+    
     while ((!openList.isEmpty())) {
         // do smth
         Node current = openList.peek();
@@ -23,7 +23,7 @@ public class aStar{
         }
 
         // for each cost(m) 
-        
+        int iter = 0;
         for (Node n : current.getChildren()) {
             System.out.println("ITERATION --> " + iter);
             iter++;
@@ -45,13 +45,17 @@ public class aStar{
                     }
                 }
             }
-            /* 
+            
             if (n.getChildren() == null) {
-                openList.remove(current);
-                closedList.add(current);
-                continue;
-            }
-            */
+                
+                 if(compareTargetStates(n.getWorldState(), target.getWorldState())) {
+                    openList.remove(current);
+                    closedList.add(current);
+                    return current;
+                 } else {
+                    continue;
+                 } 
+            }  
         }
         openList.remove(current);
         closedList.add(current);
