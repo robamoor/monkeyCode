@@ -86,57 +86,16 @@ public class aStar{
     }
     // traverses to top of branch from solution node
     ArrayList<worldState> wsArrayList = new ArrayList<>();
+    wsArrayList.add(node.getWorldState());
     while (node.getParent()!= null) {
         node = node.getParent();
         wsArrayList.add(node.getWorldState());
     }
     Collections.reverse(wsArrayList);
     for (int i = 0; i < wsArrayList.size();i++) {
-        System.out.println(wsArrayList.get(i).getMonkeyRoom() + " " + wsArrayList.get(i).getBoxRoom() + " " + wsArrayList.get(i).getMonkeyHeight() + " " + wsArrayList.get(i).getMonkeyHasBananas() + " ");
+        System.out.println(wsArrayList.get(i).getMonkeyRoom() + " " + wsArrayList.get(i).getBoxRoom() + " " + wsArrayList.get(i).getBananasRoom() + " " + wsArrayList.get(i).getMonkeyHasBananas() + " ");
     }
   }
 
-/* 
-A* pseudocode
 
-make an empty list C of closed nodes
-make a list O of open nodes and their respective fn values containing the start node
-while O isn't empty:
-    pick a node n from O with the best value for fn
-    if n is target:
-        return solution
-    for every m which is a neighbor of n:
-        if (m is not in C) and (m is not in O):
-            add m to O, set n as m's parent
-            calculate g(m) and f(m) and save them
-        else:
-            if f(m) from last iteration is better than g(m) from this iteration:
-                set n as m's parent
-                update g(m) and f(m)
-                if m is in C:
-                    move m to O
-    move n from O to C
-
-return that there's no solution */
-
-/*public static void printPath(Node target){
-    Node n = target;
-
-    if(n==null)
-        return;
-
-    List<Integer> ids = new ArrayList<>();
-
-    while(n.parent != null){
-        ids.add(n.id);
-        n = n.parent;
-    }
-    ids.add(n.id);
-    Collections.reverse(ids);
-
-    for(int id : ids){
-        System.out.print(id + " ");
-    }
-    System.out.println("");
-*/
 }
