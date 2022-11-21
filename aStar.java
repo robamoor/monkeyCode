@@ -29,7 +29,6 @@ public class aStar{
         // for each cost(m) 
         int iter = 0;
         for (Node n : current.getChildren()) {
-            System.out.println("ITERATION --> " + iter);
             iter++;
             int totalWeight = current.getMoveScore() + n.getMoveScore();
             if(!(openList.contains(n)) && !(closedList.contains(n))) {

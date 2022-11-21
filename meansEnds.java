@@ -32,7 +32,6 @@ public class meansEnds{
       newWorldState.initialSetBoxRoom(ws.getBoxRoom());
       newWorldState.initialSetBananasRoom(ws.getBananasRoom());
       
-      System.out.println("1st iteration");
       backwardsChainGoals(childNode, newWorldState);
 
       return rootNode;
@@ -49,7 +48,6 @@ public class meansEnds{
       boolean pushBoxPossible2 = ws.pushBoxPossible(ws.getMonkeyRoom(), otherRoomsArray.get(1));
 
       if (compareTargetStates(ws)){
-        System.out.println("found start state");
         return rootNode;
       } else if (counter>12){
         return null;
@@ -78,7 +76,6 @@ public class meansEnds{
         childWorldState.initialSetBananasRoom(childWorldState.getBananasRoom());
               
         //recursive call
-        System.out.println("MoveBox1 leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState);
       }
       if (pushBoxPossible2 == true){
@@ -104,7 +101,6 @@ public class meansEnds{
         childWorldState.initialSetBananasRoom(childWorldState.getBananasRoom());
               
         //recursive call
-        System.out.println("MoveBox2 leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState);
       }
       if (movePossibleBoolRoom1 == true){
@@ -130,7 +126,6 @@ public class meansEnds{
         childWorldState.initialSetBananasRoom(childWorldState.getBananasRoom());
       
         //recursive call
-        System.out.println("Move1 to " + otherRoomsArray.get(0)+ " leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState);
       }
 
@@ -155,7 +150,6 @@ public class meansEnds{
         childWorldState.initialSetBananasRoom(childWorldState.getBananasRoom());
               
         //recursive call
-        System.out.println("Move2 to " + otherRoomsArray.get(1)+ " leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState);
       }
       if (climbUpPossible == true){
@@ -177,7 +171,6 @@ public class meansEnds{
         childWorldState.setMonkeyHeight();
               
         //recursive call
-        System.out.println("ClimbUp leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState);
       }
       if (climbDownPossible == true){
@@ -201,7 +194,6 @@ public class meansEnds{
         childWorldState.setMonkeyHeight();
               
         //recursive call
-        System.out.println("ClimbDown leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState);
       }
     }
