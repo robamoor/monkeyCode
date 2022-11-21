@@ -14,7 +14,7 @@ public class aStar{
     PriorityQueue<Node> closedList = new PriorityQueue<>();
     PriorityQueue<Node> openList = new PriorityQueue<>();
 
-    //start.f = start.g + start.calculateHeuristic(target);
+    //int start_f = start.g + start.calculateHeuristic(target);
     openList.add(start);
 
     while ((!openList.isEmpty())) {
@@ -23,6 +23,8 @@ public class aStar{
         if (current == target) {
             return current;
         }
+
+        
     }
     return start;
   }

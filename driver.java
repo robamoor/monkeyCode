@@ -30,6 +30,6 @@ class driver{
     aStar aStar = new aStar();
     Node nodeTree = meansend.backwardsChainGoals(bananasNode, bananasWorldState); //Needs to be bananasNode, ws, action
     meansend.printNodeAndChildren(nodeTree);
-    Node runAStar = aStar.runAStar(nodeTree, nonBananasNode); //start,target
+    //Node runAStar = aStar.runAStar(nodeTree, nonBananasNode); //start,target
   }
 }
