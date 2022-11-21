@@ -51,7 +51,7 @@ public class meansEnds{
       if (compareTargetStates(ws)){
         System.out.println("found start state");
         return rootNode;
-      } else if (counter>10){
+      } else if (counter>8){
         return rootNode;
       }
       // if it is possible to push the box and the previous node isnt located in the same room as the new one
@@ -155,7 +155,7 @@ public class meansEnds{
         childWorldState.initialSetBananasRoom(childWorldState.getBananasRoom());
               
         //recursive call
-        System.out.println("Move2 to " + otherRoomsArray.get(0)+ " leaf/iteration"+counter);
+        System.out.println("Move2 to " + otherRoomsArray.get(1)+ " leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState);
       }
       if (climbUpPossible == true){

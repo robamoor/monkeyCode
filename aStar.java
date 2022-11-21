@@ -6,10 +6,6 @@ public class aStar{
     
   }
 
-  public int costFunction(int gn, int hn){
-    return gn+hn;
-  }
-
   public Node runAStar(Node start, Node target){
     PriorityQueue<Node> closedList = new PriorityQueue<>();
     PriorityQueue<Node> openList = new PriorityQueue<>();

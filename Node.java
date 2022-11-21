@@ -7,12 +7,14 @@ public class Node implements Comparable<Node>{
     private ArrayList<Node> children;
     private int moveScore;
     private int hScore;
+    private int fScore;
 
     //num children = number of possible actions from world state
     public Node(worldState ws) {
         this.ws = ws;
         this.moveScore = moveFunction();
         this.hScore = heuristicFunction();
+        this.fScore = hScore+moveScore;
         //children = new ArrayList<>();
     }
 
@@ -119,6 +121,13 @@ public class Node implements Comparable<Node>{
         return hScore;
       }
 
+      public int getFScore(){
+        return fScore;
+      }
+
+      public int costFunction(int gn, int hn){
+        return gn+hn;
+      }
 
     
     public int compareTo(Node node) {
