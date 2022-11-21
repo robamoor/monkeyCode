@@ -23,7 +23,6 @@ public class aStar{
         if (current == target) {
             return current;
         }
-        
     }
     return start;
   }

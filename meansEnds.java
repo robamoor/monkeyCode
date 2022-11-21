@@ -5,7 +5,6 @@ public class meansEnds{
   private worldState startState;
   //private Node rootNode;
 
-  
   public meansEnds(worldState startState){
     this.counter = 0;
     this.startState = startState;
@@ -56,7 +55,7 @@ public class meansEnds{
         return rootNode;
       }
       // if it is possible to push the box and the previous node isnt located in the same room as the new one
-      if (pushBoxPossible1 == true && !(rootNode.getPreviousRoom().equalsIgnoreCase(otherRoomsArray.get(0)))){
+      if (pushBoxPossible1 == true){
         String newBoxRoom = otherRoomsArray.get(0);
         String[] childNodeArray = new String[]{newBoxRoom,newBoxRoom,ws.getBananasRoom()};
 
@@ -82,7 +81,7 @@ public class meansEnds{
         System.out.println("MoveBox1 leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState);
       }
-      if (pushBoxPossible2 == true && !(rootNode.getPreviousRoom().equalsIgnoreCase(otherRoomsArray.get(1)))){
+      if (pushBoxPossible2 == true){
         String newBoxRoom = otherRoomsArray.get(1);
         String[] childNodeArray = new String[]{newBoxRoom,newBoxRoom,ws.getBananasRoom()};
 
@@ -108,7 +107,7 @@ public class meansEnds{
         System.out.println("MoveBox2 leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState);
       }
-      if (movePossibleBoolRoom1 == true && !(rootNode.getPreviousRoom().equalsIgnoreCase(otherRoomsArray.get(0)))){
+      if (movePossibleBoolRoom1 == true){
         //possible move room 1
         String newMoveRoom = otherRoomsArray.get(0);
 
@@ -135,7 +134,7 @@ public class meansEnds{
         backwardsChainGoals(childNode,childWorldState);
       }
 
-      if (movePossibleBoolRoom2 == true && !(rootNode.getPreviousRoom().equalsIgnoreCase(otherRoomsArray.get(1)))){
+      if (movePossibleBoolRoom2 == true){
         String newMoveRoom = otherRoomsArray.get(1);
         String[] childNodeArray = new String[]{newMoveRoom,ws.getBoxRoom(),ws.getBananasRoom()};
 
