@@ -9,7 +9,7 @@ public class meansEnds{
   public meansEnds(worldState startState){
     this.counter = 0;
     this.startState = startState;
-    rootNode = new Node(startState);
+    this.rootNode = new Node(startState);
   }
 
   // might need to pass in the root node for recursive tree generation
@@ -23,9 +23,11 @@ public class meansEnds{
       worldState newWorldState = new worldState(monkeyBoxBananaArray);
       newWorldState.setMonkeyHeight();
 
-      this.rootNode = rootNode;
+      //this.rootNode = rootNode;
       Node childNode = new Node(newWorldState);
       rootNode.addChild(childNode);
+      childNode.setPreviousRoom(bananasRoom);
+      childNode.addParentNode(rootNode);
       //ws = Banana,Banana,high,false
       
       newWorldState.initialSetMonkeyRoom(ws.getMonkeyRoom());
@@ -54,7 +56,8 @@ public class meansEnds{
       } else if (counter>10){
         return rootNode;
       }
-      if (pushBoxPossible1 == true){
+      // if it is possible to push the box and the previous node isnt located in the same room as the new one
+      if (pushBoxPossible1 == true && !(rootNode.getPreviousRoom().equalsIgnoreCase(otherRoomsArray.get(0)))){
         String newBoxRoom = otherRoomsArray.get(0);
         String[] childNodeArray = new String[]{newBoxRoom,newBoxRoom,ws.getBananasRoom()};
 
@@ -68,6 +71,8 @@ public class meansEnds{
         //add node to node tree
         Node childNode = new Node(childWorldState);
         rootNode.addChild(childNode);
+        childNode.setPreviousRoom(newBoxRoom);
+        childNode.addParentNode(rootNode);
         
 
         childWorldState.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
@@ -78,7 +83,7 @@ public class meansEnds{
         System.out.println("MoveBox1 leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState);
       }
-      if (pushBoxPossible2 == true){
+      if (pushBoxPossible2 == true && !(rootNode.getPreviousRoom().equalsIgnoreCase(otherRoomsArray.get(1)))){
         String newBoxRoom = otherRoomsArray.get(1);
         String[] childNodeArray = new String[]{newBoxRoom,newBoxRoom,ws.getBananasRoom()};
 
@@ -92,7 +97,8 @@ public class meansEnds{
         //add node to node tree
         Node childNode = new Node(childWorldState);
         rootNode.addChild(childNode);
-        
+        rootNode.setPreviousRoom(newBoxRoom);
+        childNode.addParentNode(rootNode);
         //new child actions to pass with updated room from childWorldState
 
         childWorldState.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
@@ -103,7 +109,7 @@ public class meansEnds{
         System.out.println("MoveBox2 leaf/iteration"+counter);
         backwardsChainGoals(childNode,childWorldState);
       }
-      if (movePossibleBoolRoom1 == true){
+      if (movePossibleBoolRoom1 == true && !(rootNode.getPreviousRoom().equalsIgnoreCase(otherRoomsArray.get(0)))){
         //possible move room 1
         String newMoveRoom = otherRoomsArray.get(0);
 
@@ -119,7 +125,7 @@ public class meansEnds{
         //add node to node tree
         Node childNode = new Node(childWorldState);
         rootNode.addChild(childNode);
-
+        childNode.addParentNode(rootNode);
         //new child actions to pass with updated room from childWorldState
         childWorldState.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
         childWorldState.initialSetBoxRoom(childWorldState.getBoxRoom());
@@ -130,7 +136,7 @@ public class meansEnds{
         backwardsChainGoals(childNode,childWorldState);
       }
 
-      if (movePossibleBoolRoom2 == true){
+      if (movePossibleBoolRoom2 == true && !(rootNode.getPreviousRoom().equalsIgnoreCase(otherRoomsArray.get(1)))){
         String newMoveRoom = otherRoomsArray.get(1);
         String[] childNodeArray = new String[]{newMoveRoom,ws.getBoxRoom(),ws.getBananasRoom()};
 
@@ -144,7 +150,7 @@ public class meansEnds{
         //add node to node tree
         Node childNode = new Node(childWorldState);
         rootNode.addChild(childNode);
-
+        childNode.addParentNode(rootNode);
         //new child actions to pass with updated room from childWorldState
         childWorldState.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
         childWorldState.initialSetBoxRoom(childWorldState.getBoxRoom());
@@ -164,7 +170,7 @@ public class meansEnds{
         //add node to node tree
         Node childNode = new Node(childWorldState);
         rootNode.addChild(childNode);
-
+        childNode.addParentNode(rootNode);
         //new child actions to pass with updated room from childWorldState
 
         childWorldState.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
@@ -187,7 +193,9 @@ public class meansEnds{
         //add node to node tree
         Node childNode = new Node(childWorldState);
         rootNode.addChild(childNode);
-
+        childNode.setPreviousRoom(childWorldState.getMonkeyRoom());
+        childNode.addParentNode(rootNode);
+        //new child actions to pass with updated room from childWorldState
 
         childWorldState.initialSetMonkeyRoom(childWorldState.getMonkeyRoom());
         childWorldState.initialSetBoxRoom(childWorldState.getBoxRoom());
@@ -199,13 +207,32 @@ public class meansEnds{
         backwardsChainGoals(childNode,childWorldState);
       }
     }
+    return null;
+  }
+
+  public Node getRootNode() {
     return rootNode;
+  }
+
+  public void printNodeAndChildren(Node rootNode) {
+
+    worldState rootState = rootNode.getWorldState();
+    System.out.println("root node state --> " +" Monkey is in room: "+rootState.getMonkeyRoom()+" Bananas in room: " + rootState.getBananasRoom() + " Box is in room: " + rootState.getBoxRoom() + " Monkey is at height: " +rootState.getMonkeyHeight());
+    for (int i = 0; i < rootNode.getChildren().size(); i++) {
+      System.out.println("child state at index " + i + " --> " + " Monkey is in room: "+rootNode.getChildren().get(i).getWorldState().getMonkeyRoom()+" Bananas in room: " + rootNode.getChildren().get(i).getWorldState().getBananasRoom() + " Box is in room: " + rootNode.getChildren().get(i).getWorldState().getBoxRoom() + " Monkey is at height: " +rootNode.getChildren().get(i).getWorldState().getMonkeyHeight());
+    } 
   }
 
   public void printTree(Node rootNode) {
 
-    while(rootNode.getChildren() != null) {
-      
+    worldState rootState = rootNode.getWorldState();
+    System.out.println("root node state --> " +" Monkey is in room: "+rootState.getMonkeyRoom()+" Bananas in room: " + rootState.getBananasRoom() + " Box is in room: " + rootState.getBoxRoom() + " Monkey is at height: " +rootState.getMonkeyHeight());
+    while (rootNode.getChildren() != null) {
+      for (int i = 0; i < rootNode.getChildren().size(); i++) {
+        System.out.println("child state at index " + i + " --> " + " Monkey is in room: "+rootNode.getChildren().get(i).getWorldState().getMonkeyRoom()+" Bananas in room: " + rootNode.getChildren().get(i).getWorldState().getBananasRoom() + " Box is in room: " + rootNode.getChildren().get(i).getWorldState().getBoxRoom() + " Monkey is at height: " +rootNode.getChildren().get(i).getWorldState().getMonkeyHeight());
+        Node newNode = rootNode.getChildAt(i);  
+        printTree(newNode);
+      } 
     }
   }
 

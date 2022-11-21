@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public class Node implements Comparable<Node>{
     private worldState ws;
+    private String previousRoom;
+    private Node parent;
     private ArrayList<Node> children;
     private int moveScore;
     private int hScore;
@@ -11,7 +13,11 @@ public class Node implements Comparable<Node>{
         this.ws = ws;
         this.moveScore = moveFunction();
         this.hScore = heuristicFunction();
-        children = new ArrayList<>();
+        //children = new ArrayList<>();
+    }
+
+    public void addParentNode(Node parentNode) {
+      parent = parentNode;
     }
 
     public Node getChildAt(int index) {
@@ -23,12 +29,26 @@ public class Node implements Comparable<Node>{
     }
 
     public void addChild(Node child) {
+      if (children == null) {
+        children = new ArrayList<>();
         children.add(child);
+      } else {
+        children.add(child);
+      } 
     }
 
     public worldState getWorldState() {
         return this.ws;
     }
+
+    public String getPreviousRoom() {
+      return previousRoom;
+    }
+
+    public void setPreviousRoom(String room) {
+      previousRoom = room;
+    }
+
 
       //move fn (number of correct final conditions)
     public int moveFunction(){
