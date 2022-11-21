@@ -20,6 +20,10 @@ public class aStar{
         Node current = openList.peek();
         if (compareTargetStates(current.getWorldState(), target.getWorldState())) {
             return current;
+        } else if (current.getChildren() == null) {
+            openList.remove(current);
+            closedList.add(current);
+            continue;
         }
 
         // for each cost(m) 
@@ -45,7 +49,7 @@ public class aStar{
                     }
                 }
             }
-            
+            /* 
             if (n.getChildren() == null) {
                 
                  if(compareTargetStates(n.getWorldState(), target.getWorldState())) {
@@ -55,7 +59,8 @@ public class aStar{
                  } else {
                     break;
                  } 
-            }  
+            }
+            */  
         }
         openList.remove(current);
         closedList.add(current);

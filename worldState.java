@@ -26,7 +26,7 @@ public class worldState {
     this.roomMonkeyInitial.add(monkeyBoxBananaArray[0]);
     this.roomBoxInitial.add(monkeyBoxBananaArray[1]);
     this.roomBananasInitial.add(monkeyBoxBananaArray[2]);
-    //this.targetState = getTargetState();
+    //getTargetState();
   }
 
   //Getter for Height Question for Actions  
@@ -188,10 +188,8 @@ public class worldState {
     if (this.targetState == null) {
       worldState targetState = new worldState(param);
       this.targetState = targetState;
-    } else {
-      return this.targetState;
-    }
-    
+    }   
+
     return this.targetState;
   }
 
