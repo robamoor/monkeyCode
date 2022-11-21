@@ -22,6 +22,10 @@ public class Node implements Comparable<Node>{
       parent = parentNode;
     }
 
+    public Node getParent() {
+      return parent;
+    }
+
     public Node getChildAt(int index) {
         return children.get(index);
     }

@@ -80,6 +80,23 @@ public class aStar{
     return monkeyHasBananasCheck&&heightCheck&&bananasRoomCheck&&boxRoomCheck&&monkeyRoomCheck;
   }
 
+  public void printPath(Node target) {
+    Node node = target;
+    if (node==null) {
+        return;
+    }
+    // traverses to top of branch from solution node
+    ArrayList<worldState> wsArrayList = new ArrayList<>();
+    while (node.getParent()!= null) {
+        node = node.getParent();
+        wsArrayList.add(node.getWorldState());
+    }
+    Collections.reverse(wsArrayList);
+    for (int i = 0; i < wsArrayList.size();i++) {
+        System.out.println(wsArrayList.get(i).getMonkeyRoom() + " " + wsArrayList.get(i).getBoxRoom() + " " + wsArrayList.get(i).getMonkeyHeight() + " " + wsArrayList.get(i).getMonkeyHasBananas() + " ");
+    }
+  }
+
 /* 
 A* pseudocode
 
