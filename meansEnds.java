@@ -3,13 +3,13 @@ import java.util.*;
 public class meansEnds{
   private int counter;
   private worldState startState;
-  private Node rootNode;
+  //private Node rootNode;
 
   
   public meansEnds(worldState startState){
     this.counter = 0;
     this.startState = startState;
-    this.rootNode = new Node(startState);
+    //this.rootNode = new Node(startState);
   }
 
   // might need to pass in the root node for recursive tree generation
@@ -23,13 +23,12 @@ public class meansEnds{
       worldState newWorldState = new worldState(monkeyBoxBananaArray);
       newWorldState.setMonkeyHeight();
 
-      //this.rootNode = rootNode;
       Node childNode = new Node(newWorldState);
       rootNode.addChild(childNode);
       childNode.setPreviousRoom(bananasRoom);
       childNode.addParentNode(rootNode);
       //ws = Banana,Banana,high,false
-      
+      //this.rootNode = childNode;
       newWorldState.initialSetMonkeyRoom(ws.getMonkeyRoom());
       newWorldState.initialSetBoxRoom(ws.getBoxRoom());
       newWorldState.initialSetBananasRoom(ws.getBananasRoom());
@@ -207,12 +206,13 @@ public class meansEnds{
         backwardsChainGoals(childNode,childWorldState);
       }
     }
-    return null;
+    return rootNode;
   }
-
+/* 
   public Node getRootNode() {
     return rootNode;
   }
+  */
 
   public void printNodeAndChildren(Node rootNode) {
 
@@ -222,7 +222,7 @@ public class meansEnds{
       System.out.println("child state at index " + i + " --> " + " Monkey is in room: "+rootNode.getChildren().get(i).getWorldState().getMonkeyRoom()+" Bananas in room: " + rootNode.getChildren().get(i).getWorldState().getBananasRoom() + " Box is in room: " + rootNode.getChildren().get(i).getWorldState().getBoxRoom() + " Monkey is at height: " +rootNode.getChildren().get(i).getWorldState().getMonkeyHeight());
     } 
   }
-
+// there is omething horribly wrong w/ this function
   public void printTree(Node rootNode) {
 
     worldState rootState = rootNode.getWorldState();

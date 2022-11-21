@@ -16,6 +16,15 @@ public class aStar{
 
     //start.f = start.g + start.calculateHeuristic(target);
     openList.add(start);
+
+    while ((!openList.isEmpty())) {
+        // do smth
+        Node current = openList.peek();
+        if (current == target) {
+            return current;
+        }
+        
+    }
     return start;
   }
 

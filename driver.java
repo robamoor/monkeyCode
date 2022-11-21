@@ -29,7 +29,7 @@ class driver{
     //Initialize aStar and run backwards chaning starting from 
     aStar aStar = new aStar();
     Node nodeTree = meansend.backwardsChainGoals(bananasNode, bananasWorldState); //Needs to be bananasNode, ws, action
-    //meansend.printTree(meansend.getRootNode());
+    meansend.printNodeAndChildren(nodeTree);
     Node runAStar = aStar.runAStar(nodeTree, nonBananasNode); //start,target
   }
 }
