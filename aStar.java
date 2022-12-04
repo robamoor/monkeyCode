@@ -99,6 +99,7 @@ public class aStar{
   }
 
   public void printActionList(){
+    System.out.println("Plan:");
     for (int i =0; i< path.size()-1;i++){
         worldState firstState = path.get(i);
         worldState secondState = path.get(i+1);
