@@ -34,6 +34,7 @@ class driver{
     Node runAStar = aStar.runAStar(nodeTree, nonBananasNode); //start,target%
     worldState temp = runAStar.getWorldState();
     ArrayList<String> worldState = temp.getWorldState();
-    aStar.printPath(runAStar);
+    aStar.getPath(runAStar);
+    aStar.printActionList();
   }
 }

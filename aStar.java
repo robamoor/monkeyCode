@@ -2,7 +2,7 @@ import java.util.*;
 
 public class aStar{
 
-    //private worldState targetState;
+    private ArrayList<worldState> path;
 
   public aStar(){
     
@@ -79,21 +79,41 @@ public class aStar{
     return monkeyHasBananasCheck&&heightCheck&&bananasRoomCheck&&boxRoomCheck&&monkeyRoomCheck;
   }
 
-  public void printPath(Node target) {
+  public void getPath(Node target) {
     Node node = target;
     if (node==null) {
         return;
     }
     // traverses to top of branch from solution node
-    ArrayList<worldState> wsArrayList = new ArrayList<>();
-    wsArrayList.add(node.getWorldState());
+    path = new ArrayList<>();
+    path.add(node.getWorldState());
     while (node.getParent()!= null) {
         node = node.getParent();
-        wsArrayList.add(node.getWorldState());
+        path.add(node.getWorldState());
     }
-    Collections.reverse(wsArrayList);
-    for (int i = 0; i < wsArrayList.size();i++) {
-        System.out.println(wsArrayList.get(i).getMonkeyRoom() + " " + wsArrayList.get(i).getBoxRoom() + " " + wsArrayList.get(i).getBananasRoom() + " " + wsArrayList.get(i).getMonkeyHasBananas() + " ");
+//    Collections.reverse(path);
+//    for (int i = 0; i < path.size();i++) {
+//        System.out.println(path.get(i).getMonkeyRoom() + " " + path.get(i).getBoxRoom() + " " + path.get(i).getBananasRoom() + " " + path.get(i).getMonkeyHasBananas() + " ");
+//    }
+
+  }
+
+  public void printActionList(){
+    for (int i =0; i< path.size()-1;i++){
+        worldState firstState = path.get(i);
+        worldState secondState = path.get(i+1);
+        if ((firstState.getMonkeyRoom()!=secondState.getMonkeyRoom())&&(firstState.getBoxRoom()==secondState.getBoxRoom())){
+            System.out.println("Move("+ firstState.getMonkeyRoom()+","+secondState.getMonkeyRoom()+")");
+        }else if(secondState.getMonkeyHasBananas()=="true"){
+            System.out.println("GrabBananas()");
+            break;
+        }else if(firstState.getBoxRoom()!=secondState.getBoxRoom()){
+            System.out.println("MoveBox("+ firstState.getMonkeyRoom()+","+secondState.getMonkeyRoom()+")");
+        }else if((firstState.getMonkeyHeight()!=secondState.getMonkeyHeight())&&secondState.getMonkeyHeight()=="high"){
+            System.out.println("ClimbUp()");
+        }else if((firstState.getMonkeyHeight()!=secondState.getMonkeyHeight())&&secondState.getMonkeyHeight()=="low"){
+            System.out.println("ClimbDown()");
+        }
     }
   }
 
